@@ -1,0 +1,5 @@
+C:\Users\radams\Desktop\C#\Nim\bin\Debug\Nim.exe
+C:\Users\radams\Desktop\C#\Nim\bin\Debug\Nim.pdb
+C:\Users\radams\Desktop\C#\Nim\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\radams\Desktop\C#\Nim\obj\x86\Debug\Nim.exe
+C:\Users\radams\Desktop\C#\Nim\obj\x86\Debug\Nim.pdb
