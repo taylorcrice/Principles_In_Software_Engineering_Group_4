@@ -5,11 +5,8 @@ using System.Text;
 
 namespace Nim
 {
-    class Program
+    interface PlayerInterface
     {
-        static void Main(string[] args)
-        {
-            Game m = new Game();
-        }
+        void move();
     }
 }

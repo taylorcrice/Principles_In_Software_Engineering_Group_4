@@ -13,11 +13,11 @@ namespace Nim
         static public void init()
         {
             uniqueMove = new List<TurnData>();
-            for (int row1 = 0; row1 <= Game.ROW1_SIZE; row1++)
+            for (int row1 = 0; row1 <= GameBoard.ROW1_SIZE; row1++)
             {
-                for (int row2 = 0; row2 <= Game.ROW2_SIZE; row2++)
+                for (int row2 = 0; row2 <= GameBoard.ROW2_SIZE; row2++)
                 {
-                    for (int row3 = 0; row3 <= Game.ROW3_SIZE; row3++)
+                    for (int row3 = 0; row3 <= GameBoard.ROW3_SIZE; row3++)
                     {
                         int[] board = {row1,row2,row3};
                         uniqueMove.Add(new TurnData(board, 0));
@@ -26,7 +26,7 @@ namespace Nim
             }
         }
 
-        static public void smartMove(Game game)
+        static public void smartMove(GameBoard game)
         {
             //dummy initializations
             float currentMax = -1.5f;
@@ -49,7 +49,7 @@ namespace Nim
             }
             if (currentMax != 0)
             {
-                game.computerMove(uniqueMove[index].board);
+                game.updateBoard(uniqueMove[index].board);
             }
             else
             {
@@ -57,14 +57,14 @@ namespace Nim
             }
         }
 
-        static public void randMove(Game game)
+        static public void randMove(GameBoard game)
         {
             bool moveMade = false;
             var rand = new Random();
             while (!moveMade)
             {
                 int randRow,randNumPieces;
-                randRow = rand.Next(0, Game.NUM_ROWS);
+                randRow = rand.Next(0, GameBoard.NUM_ROWS);
                 int[] currentBoardState = { game.row1, game.row2, game.row3 };
                 if (currentBoardState[randRow] > 0)
                 {
