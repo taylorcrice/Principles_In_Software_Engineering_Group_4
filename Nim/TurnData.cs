@@ -10,10 +10,10 @@ namespace Nim
         public int[] board { get; set; }
         public int turn { get; set; }
         public float percentage { get; set; }
-        public TurnData(int[] b, int t)
+        public TurnData(int[] board, int turn)
         {
-            board = b;
-            turn = t;
+            this.board = board;
+            this.turn = turn;
             percentage = 0;
         }
     }

@@ -86,7 +86,7 @@ namespace Nim
                     try
                     {
                         row = Convert.ToInt32(Console.ReadLine());
-                        if (row < 4 && row > 0)
+                        if (row > 0 && row <= Game.NUM_ROWS)
                         {
                             getValidInput = true;
                         }

@@ -13,15 +13,19 @@ namespace Nim
         int turnCount;
         public bool gameover { get; set; }
         public List<TurnData> data { get; set; }
-        float[][] possibleStorage;
+        public const int ROW1_SIZE = 3;
+        public const int ROW2_SIZE = 5;
+        public const int ROW3_SIZE = 7;
+        public const int NUM_ROWS = 3;
+
 
         public Game()
         {
             data = new List<TurnData>();
             gameover = false;
-            row1 = 3;
-            row2 = 5;
-            row3 = 7;
+            row1 = ROW1_SIZE;
+            row2 = ROW2_SIZE;
+            row3 = ROW3_SIZE;
             turnCount = 0;
             int[] board = { row1, row2, row3 };
             data.Add(new TurnData(board, turnCount));

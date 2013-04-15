@@ -9,18 +9,17 @@ namespace Nim
     {
         static List<TurnData> data = new List<TurnData>();
         static List<TurnData> uniqueMove;
-        //static public void move(Game game);
 
         static public void init()
         {
             uniqueMove = new List<TurnData>();
-            for (int a = 0; a < 4; a++)
+            for (int row1 = 0; row1 <= Game.ROW1_SIZE; row1++)
             {
-                for (int b = 0; b < 6; b++)
+                for (int row2 = 0; row2 <= Game.ROW2_SIZE; row2++)
                 {
-                    for (int c = 0; c < 8; c++)
+                    for (int row3 = 0; row3 <= Game.ROW3_SIZE; row3++)
                     {
-                        int[] board = {a,b,c};
+                        int[] board = {row1,row2,row3};
                         uniqueMove.Add(new TurnData(board, 0));
                     }
                 }
@@ -29,8 +28,10 @@ namespace Nim
 
         static public void smartMove(Game game)
         {
+            //dummy initializations
             float currentMax = -1.5f;
             int index =-1;
+
             int[] currentBoardState = {game.row1, game.row2, game.row3};
             for (int i = 0; i < uniqueMove.Count; i++)
             {
@@ -40,9 +41,6 @@ namespace Nim
                         || uniqueMove[i].board[0] == currentBoardState[0] && uniqueMove[i].board[2] == currentBoardState[2] && uniqueMove[i].board[1] < currentBoardState[1]
                         || uniqueMove[i].board[1] == currentBoardState[1] && uniqueMove[i].board[2] == currentBoardState[2] && uniqueMove[i].board[0] < currentBoardState[0])
                     {
-
-
-
                         index = i;
                         currentMax = uniqueMove[i].percentage;
                     }
@@ -65,14 +63,14 @@ namespace Nim
             var rand = new Random();
             while (!moveMade)
             {
-                int a,b;
-                a = rand.Next(0, 3);
+                int randRow,randNumPieces;
+                randRow = rand.Next(0, Game.NUM_ROWS);
                 int[] currentBoardState = { game.row1, game.row2, game.row3 };
-                if (currentBoardState[a] > 0)
+                if (currentBoardState[randRow] > 0)
                 {
-                    b = rand.Next(1, currentBoardState[a] +1);
+                    randNumPieces = rand.Next(1, currentBoardState[randRow] +1);
 
-                    moveMade = game.moveCheck(a+1, b);
+                    moveMade = game.moveCheck(randRow+1, randNumPieces);
                 }
             }
         }
@@ -83,11 +81,11 @@ namespace Nim
             {
                 bool dataExists = false;
                 float percentage = 0;
-                for (int x = 0; x < data.Count; x++)
+                for (int j = 0; j < data.Count; j++)
                 {
-                    if (uniqueMove[i].board[0] == data[x].board[0] && uniqueMove[i].board[1] == data[x].board[1] && uniqueMove[i].board[2] == data[x].board[2])
+                    if (uniqueMove[i].board[0] == data[j].board[0] && uniqueMove[i].board[1] == data[j].board[1] && uniqueMove[i].board[2] == data[j].board[2])
                     {
-                        percentage += data[x].percentage;
+                        percentage += data[j].percentage;
                         dataExists = true;
                     }
                 }
