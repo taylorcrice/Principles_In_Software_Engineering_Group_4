@@ -7,13 +7,11 @@ namespace Nim
 {
     class ComputerData
     {
-        public static List<TurnData> data { get; set; }
         public static List<TurnData> uniqueMove { get; set; }
 
         static public void initComputerData()
         {
             uniqueMove = new List<TurnData>();
-            data = new List<TurnData>();
             for (int row1 = 0; row1 <= GameBoard.ROW1_SIZE; row1++)
             {
                 for (int row2 = 0; row2 <= GameBoard.ROW2_SIZE; row2++)
@@ -29,16 +27,16 @@ namespace Nim
 
         public static void analyzeData()
         {
-            List<TurnData> data = BoardData.gameData;
+            List<TurnData> previousGameData = BoardData.gameData;
             for (int i = 0; i < uniqueMove.Count; i++)
             {
                 bool dataExists = false;
                 float percentage = 0;
-                for (int j = 0; j < data.Count; j++)
+                for (int j = 0; j < previousGameData.Count; j++)
                 {
-                    if (uniqueMove[i].board[0] == data[j].board[0] && uniqueMove[i].board[1] == data[j].board[1] && uniqueMove[i].board[2] == data[j].board[2])
+                    if (uniqueMove[i].board[0] == previousGameData[j].board[0] && uniqueMove[i].board[1] == previousGameData[j].board[1] && uniqueMove[i].board[2] == previousGameData[j].board[2])
                     {
-                        percentage += data[j].percentage;
+                        percentage += previousGameData[j].percentage;
                         dataExists = true;
                     }
                 }

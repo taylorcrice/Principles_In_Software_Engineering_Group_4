@@ -55,7 +55,6 @@ namespace Nim
         {
             int[] currentBoardState = GameBoard.getBoardState();
             List<TurnData> validMoveData = new List<TurnData>();
-            validMoveData.Add(new TurnData(new int[] {0,0,0},0));
             for (int i = 0; i < ComputerData.uniqueMove.Count; i++)
             {
                 if (ComputerData.uniqueMove[i].board[0] == currentBoardState[0] && ComputerData.uniqueMove[i].board[1] == currentBoardState[1] && ComputerData.uniqueMove[i].board[2] < currentBoardState[2]

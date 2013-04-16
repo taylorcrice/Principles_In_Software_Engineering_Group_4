@@ -7,6 +7,7 @@ namespace Nim
 {
     class ComputerAI : PlayerInterface
     {
+        private static Random rand = new Random();
 
         public void move()
         {
@@ -21,7 +22,7 @@ namespace Nim
                 if (validMoveData[i].percentage > currentMax)
                 {
                     index = i;
-                    currentMax = ComputerData.uniqueMove[i].percentage;
+                    currentMax = validMoveData[i].percentage;
                 }
             }
             if (currentMax != 0)
@@ -36,7 +37,7 @@ namespace Nim
 
         static public void randMove()
         {            
-            var rand = new Random();
+            
             int[] boardStateAfterMove = null;
             bool validMove = (boardStateAfterMove != null);
 
