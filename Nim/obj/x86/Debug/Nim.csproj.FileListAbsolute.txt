@@ -8,3 +8,5 @@ C:\Users\acox\Documents\GitHub\Principles_In_Software_Engineering_Group_4\Nim\ob
 C:\Users\acox\Documents\GitHub\Principles_In_Software_Engineering_Group_4\Nim\bin\Debug\Nim.exe
 C:\Users\acox\Documents\GitHub\Principles_In_Software_Engineering_Group_4\Nim\bin\Debug\Nim.pdb
 C:\Users\acox\Documents\GitHub\Principles_In_Software_Engineering_Group_4\Nim\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\radams\Documents\GitHub\Principles_In_Software_Engineering_Group_4\Nim\obj\x86\Debug\Nim.exe
+C:\Users\radams\Documents\GitHub\Principles_In_Software_Engineering_Group_4\Nim\obj\x86\Debug\ResolveAssemblyReference.cache

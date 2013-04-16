@@ -92,21 +92,6 @@ namespace Nim
             ComputerAI.analyzeData(game.data);
         }
 
-        public void evaluateData(GameBoard)
-        {
-            int numerator, denominator;
-            denominator = data.Count / 2;
-            numerator = denominator;
-            for (int i = data.Count - 1; i >= 0; i--)
-            {
-                numerator *= -1;
-                data[i].percentage = (float)numerator / (float)denominator;
-                if (numerator > 0)
-                {
-                    numerator--;
-                }
-            }
-            data[0].percentage = 0.0f;
-        }
+        
     }
 }
