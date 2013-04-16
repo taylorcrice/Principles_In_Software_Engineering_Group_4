@@ -5,57 +5,53 @@ using System.Text;
 
 namespace Nim
 {
-    static class ComputerAI
+    class ComputerAI : PlayerInterface
     {
-        
 
-        static public void smartMove(GameBoard game)
+        public void move()
         {
             //dummy initializations
             float currentMax = -1.5f;
             int index =-1;
 
-            int[] currentBoardState = {game.row1, game.row2, game.row3};
-            for (int i = 0; i < uniqueMove.Count; i++)
+            //this isn't right
+            List<TurnData> validMoveData = BoardValidation.getValidBoardState();
+            for (int i = 0; i < validMoveData.Count; i++)
             {
-                if (uniqueMove[i].percentage > currentMax)
+                if (validMoveData[i].percentage > currentMax)
                 {
-                    if (uniqueMove[i].board[0] == currentBoardState[0] && uniqueMove[i].board[1] == currentBoardState[1] && uniqueMove[i].board[2] < currentBoardState[2]
-                        || uniqueMove[i].board[0] == currentBoardState[0] && uniqueMove[i].board[2] == currentBoardState[2] && uniqueMove[i].board[1] < currentBoardState[1]
-                        || uniqueMove[i].board[1] == currentBoardState[1] && uniqueMove[i].board[2] == currentBoardState[2] && uniqueMove[i].board[0] < currentBoardState[0])
-                    {
-                        index = i;
-                        currentMax = uniqueMove[i].percentage;
-                    }
-
+                    index = i;
+                    currentMax = ComputerData.uniqueMove[i].percentage;
                 }
             }
             if (currentMax != 0)
             {
-                game.updateBoard(uniqueMove[index].board);
+                BoardControl.updateBoard(validMoveData[index].board);
             }
             else
             {
-                randMove(game);
+                randMove();
             }
         }
 
-        static public void randMove(GameBoard game)
-        {
-            bool moveMade = false;
+        static public void randMove()
+        {            
             var rand = new Random();
-            while (!moveMade)
-            {
-                int randRow,randNumPieces;
-                randRow = rand.Next(0, GameBoard.NUM_ROWS);
-                int[] currentBoardState = { game.row1, game.row2, game.row3 };
-                if (currentBoardState[randRow] > 0)
-                {
-                    randNumPieces = rand.Next(1, currentBoardState[randRow] +1);
+            int[] boardStateAfterMove = null;
+            bool validMove = (boardStateAfterMove != null);
 
-                    moveMade = game.moveCheck(randRow+1, randNumPieces);
-                }
+            do
+            {
+                //fix this logic later
+                int randRow, randNumPieces;
+                randRow = rand.Next(1, GameBoard.NUM_ROWS + 1);
+                randNumPieces = rand.Next(1, GameBoard.ROW3_SIZE);
+
+                boardStateAfterMove = BoardValidation.validateMove(randRow, randNumPieces);
+                validMove = (boardStateAfterMove != null);
             }
+            while (!validMove) ;
+            BoardControl.updateBoard(boardStateAfterMove);
         }
 
         

@@ -7,57 +7,45 @@ namespace Nim
 {
     class Game
     {
-        GameBoard game;
         PlayerInterface player1, player2;
         public Game()
         {
-            ComputerAI.init();
             bool gameRunning = true;
+            ComputerData.initComputerData();
+            GameBoard.initBoard();
+            BoardData.initBoardData();
             while (gameRunning)
             {
                 Console.WriteLine("Type P for player vs. computer");
                 Console.WriteLine("Type C for computer vs. computer");
                 Console.WriteLine("Type E to exit");
+
+                int numberOfGamesToPlay = 1;
                 string input = Console.ReadLine();
-                ///Player vs Computer
                 if (input == "p")
                 {
-                    gameLoopPvC();
+                    player1 = new HumanPlayer();
+                    player2 = new ComputerAI();
                 }
-
-                 ///Computer vs Computer
                 else if (input == "c")
                 {
-                    game = new GameBoard();
-                    int timesToPlay=0;
-                    bool getValidInput = true;
-                    while (getValidInput)
+                    player1 = new ComputerAI();
+                    player2 = new ComputerAI();
+                    Console.WriteLine("How many games would you Like to play?");
+                    bool validInput = false;
+                    do
                     {
-                        Console.WriteLine("How many games would you like the computers to play");
                         try
                         {
-                            timesToPlay = Convert.ToInt32(Console.ReadLine());
-                            getValidInput = false;
+                            numberOfGamesToPlay = Convert.ToInt32(Console.ReadLine());
+                            validInput = true;
                         }
                         catch (Exception)
                         {
-                            Console.WriteLine("Invalid Input");
-                            getValidInput = true;
+                            Console.WriteLine("Invalid Input.");
+                            validInput = false;
                         }
-                    }
-                    //Gameplay
-                    for (int i = 0; i < timesToPlay; i++)
-                    {
-                        while (!game.gameover)
-                        {
-                            //Console.WriteLine("----------------");
-                            ComputerAI.smartMove(game);
-                            //game.Print();
-                        }
-                        game.evaluateData();
-                        ComputerAI.analyzeData(game.data);
-                        game = new GameBoard();
-                    }
+                    } while (!validInput);
                 }
                 else if (input == "e")
                 {
@@ -69,27 +57,28 @@ namespace Nim
                     Console.WriteLine("Type P for player vs. computer");
                     Console.WriteLine("Type C for computer vs. computer");
                 }
+                for (int i = 0; i < numberOfGamesToPlay; i++)
+                {
+                    gameLoop();
+                }
             }
         }
 
-        void gameLoopPvC()
+        private void gameLoop()
         {
-            game = new GameBoard();
-            game.Print();
-            while (!game.gameover)
+            do
             {
-                
-                game.Print();
-                //computer moves
-                if (!game.gameover)
+                player1.move();
+                ViewControl.Print();
+                if (!BoardValidation.gameoverCheck())
                 {
-                    Console.WriteLine("The computer has moved.");
-                    ComputerAI.smartMove(game);
-                    game.Print();
+                    player2.move();
                 }
-            }
-            game.evaluateData();
-            ComputerAI.analyzeData(game.data);
+                ViewControl.Print();
+            } while (!BoardValidation.gameoverCheck());
+            BoardData.evaluateData();
+            ComputerData.analyzeData();
+            BoardControl.resetBoard();
         }
 
         

@@ -7,14 +7,14 @@ namespace Nim
 {
     class BoardValidation
     {
-        public static bool gameoverCheck(int[] board)
+        public static bool gameoverCheck()
         {
-            return (board[0] + board[1] + board[2]) <= 0;
+            return (GameBoard.row1 + GameBoard.row2 + GameBoard.row3) <= 0;
         }
 
         public static int[] validateMove(int row, int count)
         {
-            int[] boardState = { GameBoard.Board.row1, GameBoard.Board.row2, GameBoard.Board.row3 };
+            int[] boardState = { GameBoard.row1, GameBoard.row2, GameBoard.row3 };
             bool valid = false;
             switch (row)
             {
@@ -29,14 +29,14 @@ namespace Nim
                     valid = (boardState[1] - count) >= 0;
                     if (valid)
                     {
-                      boardState[1] = boardState[0] - count;
+                      boardState[1] = boardState[1] - count;
                     }
                     break;
                 case 3:
                     valid = (boardState[2] - count) >= 0;
                     if (valid)
                     {
-                      boardState[2] = boardState[0] - count;
+                      boardState[2] = boardState[2] - count;
                     }
                     break;
             }
@@ -49,6 +49,23 @@ namespace Nim
                 boardState = null;
             }
             return boardState;
+        }
+
+        public static List<TurnData> getValidBoardState()
+        {
+            int[] currentBoardState = GameBoard.getBoardState();
+            List<TurnData> validMoveData = new List<TurnData>();
+            validMoveData.Add(new TurnData(new int[] {0,0,0},0));
+            for (int i = 0; i < ComputerData.uniqueMove.Count; i++)
+            {
+                if (ComputerData.uniqueMove[i].board[0] == currentBoardState[0] && ComputerData.uniqueMove[i].board[1] == currentBoardState[1] && ComputerData.uniqueMove[i].board[2] < currentBoardState[2]
+                    || ComputerData.uniqueMove[i].board[0] == currentBoardState[0] && ComputerData.uniqueMove[i].board[2] == currentBoardState[2] && ComputerData.uniqueMove[i].board[1] < currentBoardState[1]
+                    || ComputerData.uniqueMove[i].board[1] == currentBoardState[1] && ComputerData.uniqueMove[i].board[2] == currentBoardState[2] && ComputerData.uniqueMove[i].board[0] < currentBoardState[0])
+                {
+                    validMoveData.Add(ComputerData.uniqueMove[i]);
+                }
+            }
+            return validMoveData;
         }
     }
 }

@@ -7,14 +7,14 @@ namespace Nim
 {
     class BoardData
     {
-        public List<TurnData> gameData { get; set; }
+        public static List<TurnData> gameData { get; set; }
 
-        BoardData()
+        public static void initBoardData()
         {
             gameData = new List<TurnData>();
         }
 
-        public void evaluateData()
+        public static void evaluateData()
         {
             int numerator, denominator;
             denominator = gameData.Count / 2;
@@ -31,7 +31,7 @@ namespace Nim
             gameData[0].percentage = 0.0f;
         }
 
-        public void saveData(int[] board, int turnCount)
+        public static void saveData(int[] board, int turnCount)
         {
             gameData.Add(new TurnData(board, turnCount));
         }

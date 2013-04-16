@@ -11,35 +11,13 @@ namespace Nim
         public const int ROW2_SIZE = 5;
         public const int ROW3_SIZE = 7;
         public const int NUM_ROWS = 3;
+        public static int row1{get; set;}
+        public static int row2{get; set;}
+        public static int row3{get; set;}
+        public static int turnCount{get; set;}
+        public static bool gameover{get; set;}
 
-
-        public int row1
-        {
-            get { return BOARD.row1; }
-            set { BOARD.row1 = value; }
-        }
-        public int row2
-        {
-            get { return BOARD.row2; }
-            set { BOARD.row2 = value; }
-        }
-        public int row3
-        {
-            get { return BOARD.row3; }
-            set { BOARD.row3 = value; }
-        }
-        public int turnCount
-        {
-            get { return BOARD.turnCount; }
-            set { BOARD.turnCount = value; }
-        }
-        public bool gameover
-        {
-            get { return BOARD.gameover; }
-            set { BOARD.gameover = value; }
-        }
-
-        public int[] getBoardState()
+        public static int[] getBoardState()
         {
             return new int[] { row1, row2, row3 };
         }
@@ -52,14 +30,13 @@ namespace Nim
             set { BOARD = value; }
         }
 
-        private GameBoard()
+        public static void initBoard()
         {
-            BOARD.gameover = false;
-            BOARD.row1 = ROW1_SIZE;
-            BOARD.row2 = ROW2_SIZE;
-            BOARD.row3 = ROW3_SIZE;
-            BOARD.turnCount = 0;
-            int[] board = { row1, row2, row3 };
+            gameover = false;
+            row1 = ROW1_SIZE;
+            row2 = ROW2_SIZE;
+            row3 = ROW3_SIZE;
+            turnCount = 0;
         }
     }
 }
