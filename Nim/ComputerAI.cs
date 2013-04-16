@@ -19,7 +19,7 @@ namespace Nim
             List<TurnData> validMoveData = BoardValidation.getValidBoardState();
             for (int i = 0; i < validMoveData.Count; i++)
             {
-                if (validMoveData[i].percentage > currentMax)
+                if (validMoveData[i].percentage > currentMax && currentMax != 0)
                 {
                     index = i;
                     currentMax = validMoveData[i].percentage;

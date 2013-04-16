@@ -49,6 +49,7 @@ namespace Nim
                 }
                 else if (input == "e")
                 {
+                    numberOfGamesToPlay = 0;
                     gameRunning = false;
                 }
                 else
