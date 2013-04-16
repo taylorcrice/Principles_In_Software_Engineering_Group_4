@@ -11,29 +11,30 @@ namespace Nim
         public void move()
         {
             Console.WriteLine("Enter the row you would like to remove from");
-            bool getValidInput = false;
+            bool validInput = false;
             int row = 0;
+            int[] boardStateAfterMove;
 
-            while (!getValidInput)
+            do
             {
                 try
                 {
                     row = Convert.ToInt32(Console.ReadLine());
                     if (row > 0 && row <= GameBoard.NUM_ROWS)
                     {
-                        getValidInput = true;
+                        validInput = true;
                     }
                 }
                 catch (Exception)
                 {
                     Console.WriteLine("Invalid Input");
                     Console.WriteLine("Enter the row you would like to remove from");
-                    getValidInput = false;
+                    validInput = false;
                 }
             }
+            while(!validInput);
             Console.WriteLine("Enter the number of pieces you would like to remove");
-            getValidInput = false;
-            while (!getValidInput)
+            do
             {
                 int count = 0;
                 try
@@ -45,10 +46,14 @@ namespace Nim
                 {
                     Console.WriteLine("Invalid Input");
                     Console.WriteLine("Enter the number of pieces you would like to remove");
-                    getValidInput = false;
+                    validInput = false;
                 }
-                getValidInput = game.moveCheck(row, count);
+                boardStateAfterMove = BoardValidation.validateMove(row, count);
+                validInput = (boardStateAfterMove != null);
             }
+            while (!validInput);
+
+            BoardControl.updateBoard(boardStateAfterMove);
         }
     }
 }

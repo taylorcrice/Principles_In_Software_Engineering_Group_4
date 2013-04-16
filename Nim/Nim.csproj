@@ -51,7 +51,6 @@
     <Compile Include="GameBoard.cs" />
     <Compile Include="HumanPlayer.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="ModelControl.cs" />
     <Compile Include="PlayerInterface.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

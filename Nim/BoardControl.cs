@@ -8,7 +8,7 @@ namespace Nim
 {
     class BoardControl
     {
-        public void updateBoard(int[] board)
+        public static void updateBoard(int[] board)
         {
             GameBoard.Board.row1 = board[0];
             GameBoard.Board.row2 = board[1];
@@ -16,7 +16,7 @@ namespace Nim
             GameBoard.Board.turnCount++;
         }
 
-        public void resetBoard()
+        public static void resetBoard()
         {
             GameBoard.Board.gameover = false;
             GameBoard.Board.row1 = GameBoard.ROW1_SIZE;
