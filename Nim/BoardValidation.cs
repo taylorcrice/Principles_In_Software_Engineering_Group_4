@@ -40,10 +40,7 @@ namespace Nim
                     }
                     break;
             }
-            if (count == 0)
-            {
-                valid = false;
-            }
+            valid = count != 0;
             if (!valid)
             {
                 boardState = null;
