@@ -12,35 +12,21 @@ namespace Nim
             return (GameBoard.row1 + GameBoard.row2 + GameBoard.row3) <= 0;
         }
 
-        public static int[] validateMove(int row, int count)
+        //split into two methodes
+        //consider wrapping row features
+        //change function higher up
+        public static int[] validateMove(int row /*make this type safe, make enum? */, int piecesToRemove)
         {
+            //test
             int[] boardState = { GameBoard.row1, GameBoard.row2, GameBoard.row3 };
             bool valid = false;
-            switch (row)
+            valid = (boardState[row-1] - piecesToRemove) >= 0;
+            if (valid)
             {
-                case 1:
-                    valid = (boardState[0] - count) >= 0;
-                    if (valid)
-                    {
-                      boardState[0] = boardState[0] - count;
-                    }
-                    break;
-                case 2:
-                    valid = (boardState[1] - count) >= 0;
-                    if (valid)
-                    {
-                      boardState[1] = boardState[1] - count;
-                    }
-                    break;
-                case 3:
-                    valid = (boardState[2] - count) >= 0;
-                    if (valid)
-                    {
-                      boardState[2] = boardState[2] - count;
-                    }
-                    break;
+                boardState[row - 1] = boardState[row - 1] - piecesToRemove;
             }
-            valid = count != 0;
+
+            valid = piecesToRemove >= 0;
             if (!valid)
             {
                 boardState = null;
