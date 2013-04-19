@@ -25,19 +25,13 @@ namespace Nim
 
         public GameBoard()
         {
+            gameover = false;
             row1 = 3;
             row2 = 5;
             row3 = 7;
-        }
-
-        public void initBoard()
-        {
-            gameover = false;
-            row1 = ROW1_SIZE;
-            row2 = ROW2_SIZE;
-            row3 = ROW3_SIZE;
             turnCount = 0;
         }
+
 
         public void updateBoard(int[] board)
         {
