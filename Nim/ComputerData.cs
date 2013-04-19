@@ -7,9 +7,9 @@ namespace Nim
 {
     class ComputerData
     {
-        public static List<TurnData> uniqueMove { get; set; }
+        public List<TurnData> uniqueMove { get; set; }
 
-        static public void initComputerData()
+        public ComputerData()
         {
             uniqueMove = new List<TurnData>();
             for (int row1 = 0; row1 <= GameBoard.ROW1_SIZE; row1++)
@@ -25,9 +25,9 @@ namespace Nim
             }
         }
 
-        public static void analyzeData()
+        public void analyzeData(BoardData boardData)
         {
-            List<TurnData> previousGameData = BoardData.gameData;
+            List<TurnData> previousGameData = boardData.gameData;
             for (int i = 0; i < uniqueMove.Count; i++)
             {
                 bool dataExists = false;
@@ -47,8 +47,6 @@ namespace Nim
                     uniqueMove[i].percentage = percentage / uniqueMove[i].turn;
                 }
             }
-            //refresh the board data for next analyzation
-            BoardData.initBoardData();
         }
     }
 }
