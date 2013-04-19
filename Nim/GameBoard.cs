@@ -11,26 +11,25 @@ namespace Nim
         public const int ROW2_SIZE = 5;
         public const int ROW3_SIZE = 7;
         public const int NUM_ROWS = 3;
-        public static int row1{get; set;}
-        public static int row2{get; set;}
-        public static int row3{get; set;}
-        public static int turnCount{get; set;}
-        public static bool gameover{get; set;}
+        public int row1{get; set;}
+        public int row2{get; set;}
+        public int row3{get; set;}
+        public int turnCount{get; set;}
+        public bool gameover{get; set;}
 
-        public static int[] getBoardState()
+        public int[] getBoardState()
         {
             return new int[] { row1, row2, row3 };
         }
-        
-        private static GameBoard BOARD = new GameBoard();
 
-        public static GameBoard Board
+        public GameBoard()
         {
-            get { return BOARD; }
-            set { BOARD = value; }
+            row1 = 3;
+            row2 = 5;
+            row3 = 7;
         }
 
-        public static void initBoard()
+        public void initBoard()
         {
             gameover = false;
             row1 = ROW1_SIZE;
