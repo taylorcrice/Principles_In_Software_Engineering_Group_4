@@ -37,5 +37,14 @@ namespace Nim
             row3 = ROW3_SIZE;
             turnCount = 0;
         }
+
+        public void updateBoard(int[] board)
+        {
+            row1 = board[0];
+            row2 = board[1];
+            row3 = board[2];
+            turnCount++;
+            BoardData.saveData(getBoardState(), turnCount);
+        }
     }
 }

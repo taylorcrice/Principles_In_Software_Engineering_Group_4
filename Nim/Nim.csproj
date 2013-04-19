@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoardControl.cs" />
     <Compile Include="BoardData.cs" />
     <Compile Include="BoardValidation.cs" />
     <Compile Include="ComputerAI.cs" />
