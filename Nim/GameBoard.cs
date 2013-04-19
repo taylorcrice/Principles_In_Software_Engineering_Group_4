@@ -11,6 +11,15 @@ namespace Nim
         public const int ROW2_SIZE = 5;
         public const int ROW3_SIZE = 7;
         public const int NUM_ROWS = 3;
+
+
+        public int[] boardState
+        {
+            get { return new int[3] { row1, row2, row3 }; }
+      
+        }
+        
+        
         public int row1{get; set;}
         public int row2{get; set;}
         public int row3{get; set;}
@@ -31,7 +40,6 @@ namespace Nim
             row3 = 7;
             turnCount = 0;
         }
-
 
         public void updateBoard(int[] board)
         {
