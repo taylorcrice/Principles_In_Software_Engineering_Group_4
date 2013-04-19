@@ -7,32 +7,39 @@ namespace Nim
 {
     class BoardValidation
     {
+        public static int[] boardState = { GameBoard.row1, GameBoard.row2, GameBoard.row3 };
         public static bool gameoverCheck()
         {
             return (GameBoard.row1 + GameBoard.row2 + GameBoard.row3) <= 0;
         }
 
-        //split into two methodes
-        //consider wrapping row features
-        //change function higher up
-        public static int[] validateMove(int row /*make this type safe, make enum? */, int piecesToRemove)
+        public static int[] alterBoardState(int row /*make this type safe, make enum? */, int piecesToRemove)
         {
-            //test
-            int[] boardState = { GameBoard.row1, GameBoard.row2, GameBoard.row3 };
-            bool valid = false;
-            valid = (boardState[row-1] - piecesToRemove) >= 0;
-            if (valid)
+            if (piecesToRemove > 0)//during the second round of play the computer always takes 0... was happening before the switch was refactored
             {
-                boardState[row - 1] = boardState[row - 1] - piecesToRemove;
+                if (validateBoardAfterMove(row, piecesToRemove))
+                {
+                    boardState[row - 1] = boardState[row - 1] - piecesToRemove;
+                }
             }
-
-            valid = piecesToRemove >= 0;
-            if (!valid)
+            else
             {
                 boardState = null;
             }
             return boardState;
         }
+
+        //consider merging with update board in GameBoard class
+        public static bool validateBoardAfterMove(int row, int piecesToRemove)
+        {
+            bool validAfterMove = false;
+            if (boardState != null)//Have to check for null
+            {
+                validAfterMove = (boardState[row - 1] - piecesToRemove) >= 0;
+            }
+            return validAfterMove;
+        }
+
 
         public static List<TurnData> getValidBoardState()
         {
