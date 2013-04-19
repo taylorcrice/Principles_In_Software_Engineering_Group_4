@@ -16,6 +16,7 @@ namespace Nim
         public int row3{get; set;}
         public int turnCount{get; set;}
         public bool gameover{get; set;}
+        private BoardData boardData = new BoardData();
 
         public int[] getBoardState()
         {
@@ -44,7 +45,7 @@ namespace Nim
             row2 = board[1];
             row3 = board[2];
             turnCount++;
-            BoardData.saveData(getBoardState(), turnCount);
+            boardData.saveData(getBoardState(), turnCount);
         }
     }
 }
