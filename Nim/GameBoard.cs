@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace Nim
 {
@@ -43,9 +44,11 @@ namespace Nim
 
         public void updateBoard(int[] board)
         {
-            row1 = board[0];
-            row2 = board[1];
-            row3 = board[2];
+            Debug.Assert(rows.Length == board.Length);
+            for (int i = 0; i < board.Length; i++)
+            {
+                rows[i].numberOfPieces = board[i];
+            }
             turnCount++;
             boardData.saveData(getBoardState(), turnCount);
         }
