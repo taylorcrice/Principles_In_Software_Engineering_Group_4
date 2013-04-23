@@ -7,22 +7,22 @@ namespace Nim
 {
     class GameBoard
     {
-        public const int ROW1_SIZE = 3;
-        public const int ROW2_SIZE = 5;
-        public const int ROW3_SIZE = 7;
+        Row[] rows;
         public const int NUM_ROWS = 3;
 
 
-        public int[] boardState
+        public int[] boardState()
         {
-            get { return new int[3] { row1, row2, row3 }; }
+            int[] returnValue;
+            returnValue = new int[NUM_ROWS];
+            for(int i=0;i<NUM_ROWS;i++)
+            {
+                returnValue[i] = rows[i].numberOfPieces;
+            }
+            return returnValue;
       
         }
-        
-        
-        public int row1{get; set;}
-        public int row2{get; set;}
-        public int row3{get; set;}
+
         public int turnCount{get; set;}
         public bool gameover{get; set;}
         private BoardData boardData = new BoardData();
