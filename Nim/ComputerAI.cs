@@ -7,8 +7,6 @@ namespace Nim
 {
     class ComputerAI : PlayerInterface
     {
-        private static Random rand = new Random();
-
         public void move()
         {
             //dummy initializations
@@ -43,6 +41,7 @@ namespace Nim
 
             do
             {
+                Random rand = new Random();
                 //fix this logic later
                 int randRow, randNumPieces;
                 randRow = rand.Next(1, GameBoard.NUM_ROWS + 1);

@@ -12,7 +12,7 @@ namespace Nim
         public const int NUM_ROWS = 3;
 
 
-        public int[] boardState()
+        public int[] getBoardState()
         {
             int[] returnValue;
             returnValue = new int[NUM_ROWS];
@@ -28,17 +28,13 @@ namespace Nim
         public bool gameover{get; set;}
         private BoardData boardData = new BoardData();
 
-        public int[] getBoardState()
-        {
-            return new int[] { row1, row2, row3 };
-        }
-
         public GameBoard()
         {
             gameover = false;
-            row1 = 3;
-            row2 = 5;
-            row3 = 7;
+            rows = new Row [NUM_ROWS];
+            rows[0] = new Row(3);
+            rows[1] = new Row(5);
+            rows[2] = new Row(7);
             turnCount = 0;
         }
 
