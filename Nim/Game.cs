@@ -8,12 +8,15 @@ namespace Nim
     class Game
     {
         PlayerInterface player1, player2;
+        ComputerData computerData ;
+        GameBoard board;
+        BoardData boardData;
         public Game()
         {
             bool gameRunning = true;
-            ComputerData.initComputerData();
-            GameBoard.initBoard();
-            BoardData.initBoardData();
+            ComputerData computerData = new ComputerData();
+            GameBoard board = new GameBoard();
+            BoardData boardData = new BoardData();
             while (gameRunning)
             {
                 Console.WriteLine("Type P for player vs. computer");
@@ -22,12 +25,12 @@ namespace Nim
 
                 int numberOfGamesToPlay = 1;
                 string input = Console.ReadLine();
-                if (input == "p")
+                if (input == "P")
                 {
                     player1 = new HumanPlayer();
                     player2 = new ComputerAI();
                 }
-                else if (input == "c")
+                else if (input == "C")
                 {
                     player1 = new ComputerAI();
                     player2 = new ComputerAI();
@@ -47,7 +50,7 @@ namespace Nim
                         }
                     } while (!validInput);
                 }
-                else if (input == "e")
+                else if (input == "E")
                 {
                     numberOfGamesToPlay = 0;
                     gameRunning = false;
@@ -71,15 +74,15 @@ namespace Nim
             {
                 player1.move();
                 ViewControl.Print();
-                if (!BoardValidation.gameoverCheck())
+                if (!BoardValidation.gameoverCheck(board.getBoardState()))
                 {
                     player2.move();
                 }
                 ViewControl.Print();
-            } while (!BoardValidation.gameoverCheck());
-            BoardData.evaluateData();
-            ComputerData.analyzeData();
-            BoardControl.resetBoard();
+            } while (!BoardValidation.gameoverCheck(board.getBoardState()));
+            boardData.evaluateData();
+            computerData.analyzeData(boardData);
+            board = new GameBoard();
         }
 
         

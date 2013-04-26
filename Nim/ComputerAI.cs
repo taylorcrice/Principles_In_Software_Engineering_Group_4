@@ -45,7 +45,7 @@ namespace Nim
                 //fix this logic later
                 int randRow, randNumPieces;
                 randRow = rand.Next(1, GameBoard.NUM_ROWS + 1);
-                randNumPieces = rand.Next(1, GameBoard.ROW3_SIZE);
+                randNumPieces = rand.Next(1, GameBoard.rows[GameBoard.NUM_ROWS].maxRowSize);
 
                 boardStateAfterMove = BoardValidation.validateMove(randRow, randNumPieces);
                 validMove = (boardStateAfterMove != null);

@@ -12,11 +12,11 @@ namespace Nim
         public ComputerData()
         {
             uniqueMove = new List<TurnData>();
-            for (int row1 = 0; row1 <= GameBoard.ROW1_SIZE; row1++)
+            for (int row1 = 0; row1 <= GameBoard.rows[0].maxRowSize; row1++)
             {
-                for (int row2 = 0; row2 <= GameBoard.ROW2_SIZE; row2++)
+                for (int row2 = 0; row2 <= GameBoard.rows[1].maxRowSize; row2++)
                 {
-                    for (int row3 = 0; row3 <= GameBoard.ROW3_SIZE; row3++)
+                    for (int row3 = 0; row3 <= GameBoard.rows[2].maxRowSize; row3++)
                     {
                         int[] board = { row1, row2, row3 };
                         uniqueMove.Add(new TurnData(board, 0));

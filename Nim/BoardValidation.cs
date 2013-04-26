@@ -14,23 +14,6 @@ namespace Nim
             return (boardState[0] + boardState[1] + boardState[3]) <= 0;
         }
 
-        //merge with update board method in board state class
-        public int[] alterBoardState(int row /*make this type safe, make enum? */, int piecesToRemove)
-        {
-            if (piecesToRemove > 0)//during the second round of play the computer always takes 0... was happening before the switch was refactored
-            {
-                if (validateBoardAfterMove(row, piecesToRemove))
-                {
-                    boardState[row - 1] = boardState[row - 1] - piecesToRemove;
-                }
-            }
-            else
-            {
-                boardState = null;
-            }
-            return boardState;
-        }
-
         //consider merging with update board in GameBoard class
         public bool validateBoardAfterMove(int row, int piecesToRemove)
         {

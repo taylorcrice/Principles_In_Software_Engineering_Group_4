@@ -9,7 +9,7 @@ namespace Nim
     {
         public static void Print()
         {
-            int[] boardState = { GameBoard.row1, GameBoard.row2, GameBoard.row3 };
+            int[] boardState = { GameBoard.rows[0].numberOfPieces, GameBoard.rows[1].numberOfPieces, GameBoard.rows[2].numberOfPieces };
             for (int i = 0; i < boardState[0]; i++)
             {
                 Console.Write('*');
