@@ -74,12 +74,13 @@ namespace Nim
             {
                 player1.move();
                 ViewControl.Print();
-                if (!BoardValidation.gameoverCheck(board.getBoardState()))
+                if (!board.gameover)
                 {
                     player2.move();
                 }
                 ViewControl.Print();
-            } while (!BoardValidation.gameoverCheck(board.getBoardState()));
+            } while (!board.gameover);
+
             boardData.evaluateData();
             computerData.analyzeData(boardData);
             board = new GameBoard();

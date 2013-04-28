@@ -8,9 +8,14 @@ namespace Nim
 {
     class GameBoard
     {
-        public static Row[] rows { get; set; }
-        public const int NUM_ROWS = 3;
+        private Row[] rows { get; set; }
+        private const int NUM_ROWS = 3;
         private BoardValidation validator;
+
+        private int myVar;
+	
+
+        public bool gameover {get{ return validator.gameoverCheck(getBoardState()); } set;}
 
 
         public int[] getBoardState()
@@ -28,20 +33,17 @@ namespace Nim
         //merge with update board method in board state class
         public bool alterBoardState(int rowNumber /*make this type safe, make enum? */, int piecesToRemove)
         {
-            bool alterationSuccessful= false;
-            if (piecesToRemove > 0)//during the second round of play the computer always takes 0... was happening before the switch was refactored
+            bool alterationSuccessful= false;                   
+            if (validator.validateBoardMove(rowNumber, piecesToRemove, getBoardState()))
             {
-                if (validator.validateBoardMove(rowNumber, piecesToRemove))
-                {
-                    rows[rowNumber - 1].numberOfPieces = rows[rowNumber - 1].numberOfPieces - piecesToRemove;
-                    alterationSuccessful = true;
-                }
+                rows[rowNumber - 1].numberOfPieces = rows[rowNumber - 1].numberOfPieces - piecesToRemove;
+                alterationSuccessful = true;
             }
+           
             return alterationSuccessful;
         }
 
         public int turnCount{get; set;}
-        public bool gameover{get; set;}
         private BoardData boardData = new BoardData();
 
         public GameBoard()

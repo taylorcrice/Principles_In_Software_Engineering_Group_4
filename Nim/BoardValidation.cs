@@ -9,20 +9,20 @@ namespace Nim
     {
 
         
-        public static bool gameoverCheck(int[] boardState)
+        public bool gameoverCheck(int[] boardState)
         {
             return (boardState[0] + boardState[1] + boardState[3]) <= 0;
         }
 
         //consider merging with update board in GameBoard class
-        public bool validateBoardMove(int row, int piecesToRemove)
+        public bool validateBoardMove(int rowNum, int piecesToRemove, int[] boardState)
         {
-            bool validAfterMove = false;
-            if (boardState != null)//Have to check for null
+            bool validMove = false;
+            if (rowNum > 0 && rowNum < boardState.Length)
             {
-                validAfterMove = (boardState[row - 1] - piecesToRemove) >= 0;
+                validMove = boardState[rowNum - 1] - piecesToRemove >= 0 && piecesToRemove > 0;
             }
-            return validAfterMove;
+            return validMove;
         }
 
 
