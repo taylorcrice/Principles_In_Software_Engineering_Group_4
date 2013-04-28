@@ -15,7 +15,7 @@ namespace Nim
         }
 
         //consider merging with update board in GameBoard class
-        public bool validateBoardAfterMove(int row, int piecesToRemove)
+        public bool validateBoardMove(int row, int piecesToRemove)
         {
             bool validAfterMove = false;
             if (boardState != null)//Have to check for null

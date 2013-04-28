@@ -10,6 +10,7 @@ namespace Nim
     {
         public static Row[] rows { get; set; }
         public const int NUM_ROWS = 3;
+        private BoardValidation validator;
 
 
         public int[] getBoardState()
@@ -25,14 +26,14 @@ namespace Nim
         }
 
         //merge with update board method in board state class
-        public bool alterBoardState(int row /*make this type safe, make enum? */, int piecesToRemove)
+        public bool alterBoardState(int rowNumber /*make this type safe, make enum? */, int piecesToRemove)
         {
             bool alterationSuccessful= false;
             if (piecesToRemove > 0)//during the second round of play the computer always takes 0... was happening before the switch was refactored
             {
-                if (validateBoardAfterMove(row, piecesToRemove))
+                if (validator.validateBoardMove(rowNumber, piecesToRemove))
                 {
-                    rows[row - 1].numberOfPieces = rows[row - 1].numberOfPieces - piecesToRemove;
+                    rows[rowNumber - 1].numberOfPieces = rows[rowNumber - 1].numberOfPieces - piecesToRemove;
                     alterationSuccessful = true;
                 }
             }
