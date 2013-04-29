@@ -7,6 +7,6 @@ namespace Nim
 {
     interface PlayerInterface
     {
-        void move();
+        void move(GameBoard board);
     }
 }

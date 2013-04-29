@@ -8,7 +8,7 @@ namespace Nim
     class HumanPlayer : PlayerInterface
     {
 
-        public void move()
+        public void move(GameBoard board)
         {
             Console.WriteLine("Enter the row you would like to remove from");
             bool validInput = false;
@@ -48,12 +48,9 @@ namespace Nim
                     Console.WriteLine("Enter the number of pieces you would like to remove");
                     validInput = false;
                 }
-                boardStateAfterMove = BoardValidation.validateMove(row, count);
-                validInput = (boardStateAfterMove != null);
+                validInput = board.alterBoardState(row,count);
             }
             while (!validInput);
-
-            BoardControl.updateBoard(boardStateAfterMove);
         }
     }
 }

@@ -9,13 +9,13 @@ namespace Nim
     class GameBoard
     {
         private Row[] rows { get; set; }
-        private const int NUM_ROWS = 3;
+        public const int NUM_ROWS = 3;
         private BoardValidation validator;
 
         private int myVar;
-	
 
-        public bool gameover {get{ return validator.gameoverCheck(getBoardState()); } set;}
+
+        public bool gameover { get { return validator.gameoverCheck(getBoardState()); } set { gameover = value; } }
 
 
         public int[] getBoardState()
@@ -37,6 +37,8 @@ namespace Nim
             if (validator.validateBoardMove(rowNumber, piecesToRemove, getBoardState()))
             {
                 rows[rowNumber - 1].numberOfPieces = rows[rowNumber - 1].numberOfPieces - piecesToRemove;
+                turnCount++;
+                boardData.saveData(getBoardState(), turnCount);
                 alterationSuccessful = true;
             }
            
@@ -55,16 +57,4 @@ namespace Nim
             rows[2] = new Row(7);
             turnCount = 0;
         }
-
-        public void updateBoard(int[] board)
-        {
-            Debug.Assert(rows.Length == board.Length);
-            for (int i = 0; i < board.Length; i++)
-            {
-                rows[i].numberOfPieces = board[i];
-            }
-            turnCount++;
-            boardData.saveData(getBoardState(), turnCount);
-        }
-    }
 }

@@ -7,14 +7,16 @@ namespace Nim
 {
     class ComputerAI : PlayerInterface
     {
-        public void move()
+        private BoardValidation validator;
+
+        public void move(GameBoard board)
         {
             //dummy initializations
             float currentMax = -1.5f;
             int index =-1;
 
             //this isn't right
-            List<TurnData> validMoveData = BoardValidation.getValidBoardState();
+            List<TurnData> validMoveData = validator.getValidBoardState(board.getBoardState());
             for (int i = 0; i < validMoveData.Count; i++)
             {
                 if (validMoveData[i].percentage > currentMax && currentMax != 0)
@@ -25,15 +27,15 @@ namespace Nim
             }
             if (currentMax != 0)
             {
-                BoardControl.updateBoard(validMoveData[index].board);
+                board.updateBoard(validMoveData[index].board);
             }
             else
             {
-                randMove();
+                randMove(board);
             }
         }
 
-        static public void randMove()
+        static public void randMove(GameBoard board)
         {            
             
             int[] boardStateAfterMove = null;
@@ -44,10 +46,10 @@ namespace Nim
                 Random rand = new Random();
                 //fix this logic later
                 int randRow, randNumPieces;
-                randRow = rand.Next(1, GameBoard.NUM_ROWS + 1);
-                randNumPieces = rand.Next(1, GameBoard.rows[GameBoard.NUM_ROWS].maxRowSize);
+                randRow = rand.Next(1, board.NUM_ROWS + 1);
+                randNumPieces = rand.Next(1, board.rows[board.NUM_ROWS].maxRowSize);
 
-                boardStateAfterMove = BoardValidation.validateMove(randRow, randNumPieces);
+                boardStateAfterMove = validator.validateMove(randRow, randNumPieces);
                 validMove = (boardStateAfterMove != null);
             }
             while (!validMove) ;
