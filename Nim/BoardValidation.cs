@@ -46,13 +46,13 @@ namespace Nim
         {
             int[] currentBoardState = boardState;
             List<TurnData> validMoveData = new List<TurnData>();
-            for (int i = 0; i < ComputerData.uniqueMove.Count; i++)
+            for (int i = 0; i < uniqueMoves.Count; i++)
             {
-                if (ComputerData.uniqueMove[i].board[0] == currentBoardState[0] && ComputerData.uniqueMove[i].board[1] == currentBoardState[1] && ComputerData.uniqueMove[i].board[2] < currentBoardState[2]
-                    || ComputerData.uniqueMove[i].board[0] == currentBoardState[0] && ComputerData.uniqueMove[i].board[2] == currentBoardState[2] && ComputerData.uniqueMove[i].board[1] < currentBoardState[1]
-                    || ComputerData.uniqueMove[i].board[1] == currentBoardState[1] && ComputerData.uniqueMove[i].board[2] == currentBoardState[2] && ComputerData.uniqueMove[i].board[0] < currentBoardState[0])
+                if (uniqueMoves[i].board[0] == currentBoardState[0] && uniqueMoves[i].board[1] == currentBoardState[1] && uniqueMoves[i].board[2] < currentBoardState[2]
+                    || uniqueMoves[i].board[0] == currentBoardState[0] && uniqueMoves[i].board[2] == currentBoardState[2] && uniqueMoves[i].board[1] < currentBoardState[1]
+                    || uniqueMoves[i].board[1] == currentBoardState[1] && uniqueMoves[i].board[2] == currentBoardState[2] && uniqueMoves[i].board[0] < currentBoardState[0])
                 {
-                    validMoveData.Add(ComputerData.uniqueMove[i]);
+                    validMoveData.Add(uniqueMoves[i]);
                 }
             }
             return validMoveData;
