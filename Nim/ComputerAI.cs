@@ -35,7 +35,7 @@ namespace Nim
             }
         }
 
-        static public void randMove(GameBoard board)
+        public void randMove(GameBoard board)
         {            
             
             int[] boardStateAfterMove = null;
@@ -46,16 +46,11 @@ namespace Nim
                 Random rand = new Random();
                 //fix this logic later
                 int randRow, randNumPieces;
-                randRow = rand.Next(1, board.NUM_ROWS + 1);
-                randNumPieces = rand.Next(1, board.rows[board.NUM_ROWS].maxRowSize);
-
-                boardStateAfterMove = validator.validateMove(randRow, randNumPieces);
-                validMove = (boardStateAfterMove != null);
+                randRow = rand.Next(1, GameBoard.NUM_ROWS + 1);
+                randNumPieces = rand.Next(1, board.rows[GameBoard.NUM_ROWS].maxRowSize);
+                validMove = board.alterBoardState(randRow, randNumPieces);
             }
             while (!validMove) ;
-            BoardControl.updateBoard(boardStateAfterMove);
-        }
-
-        
+        }        
     }
 }

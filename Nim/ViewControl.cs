@@ -7,9 +7,9 @@ namespace Nim
 {
     class ViewControl
     {
-        public static void Print()
+        public static void Print(GameBoard board)
         {
-            int[] boardState = { GameBoard.rows[0].numberOfPieces, GameBoard.rows[1].numberOfPieces, GameBoard.rows[2].numberOfPieces };
+            int[] boardState = { board.rows[0].numberOfPieces, board.rows[1].numberOfPieces, board.rows[2].numberOfPieces };
             for (int i = 0; i < boardState[0]; i++)
             {
                 Console.Write('*');

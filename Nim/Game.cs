@@ -72,13 +72,13 @@ namespace Nim
         {
             do
             {
-                player1.move();
-                ViewControl.Print();
+                player1.move(board);
+                ViewControl.Print(board);
                 if (!board.gameover)
                 {
-                    player2.move();
+                    player2.move(board);
                 }
-                ViewControl.Print();
+                ViewControl.Print(board);
             } while (!board.gameover);
 
             boardData.evaluateData();
