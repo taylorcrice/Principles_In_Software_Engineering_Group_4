@@ -11,12 +11,18 @@ namespace Nim
         public Row[] rows { get; set; }
         public const int NUM_ROWS = 3;
         private BoardValidation validator;
-
-        private int myVar;
-
-
         public bool gameover { get { return validator.gameoverCheck(getBoardState()); } set { gameover = value; } }
 
+
+        public GameBoard()
+        {
+            rows = new Row[NUM_ROWS];
+            rows[0] = new Row(3);
+            rows[1] = new Row(5);
+            rows[2] = new Row(7);
+            turnCount = 0;
+            validator = new BoardValidation(rows);
+        }
 
         public int[] getBoardState()
         {
@@ -38,25 +44,18 @@ namespace Nim
             {
                 rows[rowNumber - 1].numberOfPieces = rows[rowNumber - 1].numberOfPieces - piecesToRemove;
                 turnCount++;
-                boardData.saveData(getBoardState(), turnCount);
                 alterationSuccessful = true;
             }
 
             return alterationSuccessful;
         }
 
-        public int turnCount { get; set; }
-        private BoardData boardData = new BoardData();
-
-        public GameBoard()
+        public void saveBoardData(ref BoardData boardData)
         {
-            gameover = false;
-            rows = new Row[NUM_ROWS];
-            rows[0] = new Row(3);
-            rows[1] = new Row(5);
-            rows[2] = new Row(7);
-            turnCount = 0;
+            boardData.saveData(getBoardState(), turnCount);
         }
+
+        public int turnCount { get; set; }
 
         public void updateBoard(int[] board)
         {
@@ -66,7 +65,6 @@ namespace Nim
                 rows[i].numberOfPieces = board[i];
             }
             turnCount++;
-            boardData.saveData(getBoardState(), turnCount);
         }
 
     }

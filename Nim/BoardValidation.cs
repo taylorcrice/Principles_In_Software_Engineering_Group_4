@@ -27,14 +27,14 @@ namespace Nim
 
         public bool gameoverCheck(int[] boardState)
         {
-            return (boardState[0] + boardState[1] + boardState[3]) <= 0;
+            return (boardState[0] + boardState[1] + boardState[2]) <= 0;
         }
 
         //consider merging with update board in GameBoard class
         public bool validateBoardMove(int rowNum, int piecesToRemove, int[] boardState)
         {
             bool validMove = false;
-            if (rowNum > 0 && rowNum < boardState.Length)
+            if (rowNum > 0 && rowNum <= boardState.Length)
             {
                 validMove = boardState[rowNum - 1] - piecesToRemove >= 0 && piecesToRemove > 0;
             }

@@ -14,9 +14,9 @@ namespace Nim
         public Game()
         {
             bool gameRunning = true;
-            ComputerData computerData = new ComputerData();
-            GameBoard board = new GameBoard();
-            BoardData boardData = new BoardData();
+            computerData = new ComputerData();
+            board = new GameBoard();
+            boardData = new BoardData(board);
             while (gameRunning)
             {
                 Console.WriteLine("Type P for player vs. computer");
@@ -28,12 +28,12 @@ namespace Nim
                 if (input == "P")
                 {
                     player1 = new HumanPlayer();
-                    player2 = new ComputerAI();
+                    player2 = new ComputerAI(board);
                 }
                 else if (input == "C")
                 {
-                    player1 = new ComputerAI();
-                    player2 = new ComputerAI();
+                    player1 = new ComputerAI(board);
+                    player2 = new ComputerAI(board);
                     Console.WriteLine("How many games would you Like to play?");
                     bool validInput = false;
                     do
@@ -73,16 +73,18 @@ namespace Nim
             do
             {
                 player1.move(board);
+                board.saveBoardData(ref boardData);
                 ViewControl.Print(board);
                 if (!board.gameover)
                 {
                     player2.move(board);
+                    board.saveBoardData(ref boardData);
                 }
                 ViewControl.Print(board);
             } while (!board.gameover);
 
             boardData.evaluateData();
-            computerData.analyzeData(boardData);
+            boardData.analyzeData();
             board = new GameBoard();
         }
 

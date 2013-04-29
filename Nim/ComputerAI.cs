@@ -9,6 +9,12 @@ namespace Nim
     {
         private BoardValidation validator;
 
+        public ComputerAI(GameBoard board)
+        {
+            validator = new BoardValidation(board.rows);
+        }
+
+
         public void move(GameBoard board)
         {
             //dummy initializations
@@ -46,8 +52,8 @@ namespace Nim
                 Random rand = new Random();
                 //fix this logic later
                 int randRow, randNumPieces;
-                randRow = rand.Next(1, GameBoard.NUM_ROWS + 1);
-                randNumPieces = rand.Next(1, board.rows[GameBoard.NUM_ROWS].maxRowSize);
+                randRow = rand.Next(1, GameBoard.NUM_ROWS+1);
+                randNumPieces = rand.Next(1, board.rows[randRow-1].maxRowSize);
                 validMove = board.alterBoardState(randRow, randNumPieces);
             }
             while (!validMove) ;
